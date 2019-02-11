@@ -17,6 +17,7 @@ class App extends Component {
   fetchingAPI(searchValue, filterOption){
     const base_URL ='https://www.googleapis.com/books/v1/volumes?q=intitle:'
     const filterResults = !filterOption ? '': `&filter:${filterOption}`;
+    console.log(`${base_URL}${searchValue}${filterResults}`);
     fetch(`${base_URL}${searchValue}${filterResults}`)
     .then(res => res.json())
     .then(resJ=> {
@@ -52,7 +53,7 @@ class App extends Component {
   }
 
   filterBookType(val){
-    console.log(val);
+    console.log(this.state.searchValue);
     this.fetchingAPI(this.state.searchValue, val);
   }
 
