@@ -26,16 +26,29 @@ class App extends Component {
                  description: el.volumeInfo.description, 
                  thumbnail: el.volumeInfo.imageLinks.thumbnail, 
                  sale: el.saleInfo.saleability,
-                 price: sale
+                 price: sale,
+                 printType: el.volumeInfo.printType,
+                 viewability: el.accessInfo.viewability,
+                 ebook: el.accessInfo.epub.isAvailable
       }}); 
+      
       this.setState({
         lists: newItems
       })
+     
     })
       
   }
   getSearchResults(val){
      this.fetchingAPI(val);
+  }
+
+  filterBookType(val){
+    console.log(val);
+  }
+
+  filterPrintType(val){
+    console.log(val);
   }
 
   render() {
@@ -46,7 +59,9 @@ class App extends Component {
         </header>
         <div>
           <SearchAndFilter getSearchResults={val => this.getSearchResults(val)} />
-          <FilterBooklist />
+          <FilterBooklist  
+              onBookType={val => this.filterBookType(val)}
+              onPrintType ={val => this.filterPrintType(val)}/>
         </div>
           
         <main>
@@ -59,6 +74,7 @@ class App extends Component {
               thumbnail= {el.thumbnail} 
               sale= {el.sale}
               price= {el.price}
+             
               />)
           )}
 

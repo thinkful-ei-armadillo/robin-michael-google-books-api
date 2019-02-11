@@ -1,21 +1,21 @@
 import React from 'react';
 
 class Booklist extends React.Component{
-    render(){console.log(this.props)
-    
+    render()
+    {
 
         return (
             <div>
-                <h2>{this.props.title}</h2>
+                <h2>Title: {this.props.title}</h2>
                 <ul>
                     <li>
-                        <h4>{this.props.authors}</h4>
+                        <h4>Authors: {this.props.authors}</h4>
                     </li>
                     <li>
-                        <div>{this.props.sale === 'FOR_SALE'? this.props.price: this.props.sale}</div> 
+                        <div>Sale Price: {this.props.sale === 'FOR_SALE'? this.props.price: this.props.sale}</div> 
                     </li>
                     <li>
-                        <p> {this.props.description}</p> 
+                        <p>Description: {this.props.description}</p> 
                     </li>
                 </ul>
             </div>
