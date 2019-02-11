@@ -12,7 +12,6 @@ class App extends Component {
       searchValue: null,
       lists: [],
     }
-    this.getSearchResults = this.getSearchResults.bind(this);
   }
   fetchingAPI(searchValue, bookType,printType){
     const base_URL ='https://www.googleapis.com/books/v1/volumes?q=intitle:'
@@ -22,7 +21,7 @@ class App extends Component {
     fetch(`${base_URL}${searchValue}${filterResults}`)
     .then(res => res.ok ? res.json() : Promise.reject('error'))
     .then(resJ=> {
-      const newItems = resJ.items.map(function(el,index){
+        const newItems = resJ.items.map(function(el,index){
         const sale = el.saleInfo.saleability === 'FOR_SALE' ? el.saleInfo.retailPrice.amount: null;
         return { key: index,
                  title: el.volumeInfo.title , 
