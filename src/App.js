@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SeacrhAndFilter from './SearchAndFilter';
+import SearchAndFilter from './SearchAndFilter';
 import Booklist from './Booklist';
 import FilterBooklist from './FilterBooklist';
 
@@ -9,7 +9,8 @@ class App extends Component {
   constructor(Props){
     super();
     this.state = {
-      lists: []
+      lists: [],
+      input: ""
     }
     this.getSearchResults = this.getSearchResults.bind(this);
   }
@@ -24,16 +25,19 @@ class App extends Component {
      console.log(val);
   }
 
-
+  componentDidUpdate(){
+    console.log(this.state.input);
+  }
 
   render() {
+    console.log(this.state.input);
     return (
       <div>
         <header>
           <h1>Google Book Search</h1>
         </header>
         <div>
-          <SeacrhAndFilter getSearchResults={this.getSearchResults()} />
+          <SearchAndFilter getSearchResults={val => this.getSearchResults(val)} />
           <FilterBooklist />
         </div>
           

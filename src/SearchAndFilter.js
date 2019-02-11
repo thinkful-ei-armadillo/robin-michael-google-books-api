@@ -1,17 +1,15 @@
 import React from 'react';
 
 class SearchAndFilter extends React.Component {
+    
     handleSubmit(ev){
         ev.preventDefault();
         const val = ev.target.searchTerm.value;
-        console.log(val);
-
-        return this.props.getSearchResults(val);
-
+        this.props.getSearchResults(val);
     }    
   
     render(){
-        
+        console.log(this.props);
         return (
             <form onSubmit={(ev) => this.handleSubmit(ev)}>
                 <label htmlFor="searchTerm">Search: </label>
