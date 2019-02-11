@@ -5,7 +5,9 @@ class SearchAndFilter extends React.Component {
         ev.preventDefault();
         const val = ev.target.searchTerm.value;
         console.log(val);
+
         return this.props.getSearchResults(val);
+
     }    
   
     render(){
