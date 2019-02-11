@@ -13,8 +13,9 @@ class App extends Component {
     }
   }
   handleInput = (val) => {
-    console.log(val)
+    
   }
+
   render() {
     return (
       <div>

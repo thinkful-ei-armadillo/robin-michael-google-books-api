@@ -1,27 +1,19 @@
 import React from 'react';
 
 class SearchAndFilter extends React.Component {
-    constructor(props){
-        super();
-        this.state ={ 
-            inputValue: null};
-    }
     handleSubmit(ev){
         ev.preventDefault();
-        const val = this.state.inputValue;
-        this.props.handleInput(val);
+        const val = ev.target.searchTerm.value;
+        console.log(val);
     }    
-    titleChanged(title) { 
-        this.setState({ inputValue : title }); 
-    }
-
+  
     render(){
-        console.log(this.props);
+        
         return (
-            <form>
+            <form onSubmit={(ev) => this.handleSubmit(ev)}>
                 <label htmlFor="searchTerm">Search: </label>
-                <input type="text" name="searchTerm" id="search" placeholder="henry" value={this.state.inputValue} onChange={e => this.titleChanged(e.target.value)}/>
-                <input type="submit" name="submit" onClick={(e)=> this.handleSubmit(e)} value="search" />
+                <input type="text" id="search" placeholder="henry" name="searchTerm"/>
+                <input type="submit" name="submit" value="search" />
             </form>
         )
     }
