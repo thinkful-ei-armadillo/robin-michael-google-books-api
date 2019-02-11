@@ -9,13 +9,14 @@ class SearchAndFilter extends React.Component {
     handleSubmit(ev){
         ev.preventDefault();
         const val = this.state.inputValue;
-        console.log(val);
+        this.props.handleInput(val);
     }    
     titleChanged(title) { 
         this.setState({ inputValue : title }); 
     }
 
     render(){
+        console.log(this.props);
         return (
             <form>
                 <label htmlFor="searchTerm">Search: </label>

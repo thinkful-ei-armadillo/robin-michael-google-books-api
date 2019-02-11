@@ -12,7 +12,9 @@ class App extends Component {
       lists: []
     }
   }
-
+  handleInput = (val) => {
+    console.log(val)
+  }
   render() {
     return (
       <div>
@@ -20,7 +22,7 @@ class App extends Component {
           <h1>Google Book Seacrh</h1>
         </header>
         <div>
-          <SeacrhAndFilter />
+          <SeacrhAndFilter handleInput={() => this.handleInput} />
           <FilterBooklist />
         </div>
           
