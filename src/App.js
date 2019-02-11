@@ -15,6 +15,7 @@ class App extends Component {
   }
   handleInput = (val) => {
     
+<<<<<<< HEAD
     console.log(val)
   }
 
@@ -24,6 +25,10 @@ class App extends Component {
   }
 
 
+=======
+  }
+
+>>>>>>> ff5314e34854bd0f55bd8ddf454509b7a8855251
   render() {
     return (
       <div>

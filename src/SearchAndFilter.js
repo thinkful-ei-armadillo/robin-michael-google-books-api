@@ -9,7 +9,7 @@ class SearchAndFilter extends React.Component {
     }    
   
     render(){
-        console.log(this.props);
+        
         return (
             <form onSubmit={(ev) => this.handleSubmit(ev)}>
                 <label htmlFor="searchTerm">Search: </label>
