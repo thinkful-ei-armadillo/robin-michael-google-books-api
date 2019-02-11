@@ -10,27 +10,35 @@ class App extends Component {
     super();
     this.state = {
       lists: [],
-      input: ""
     }
     this.getSearchResults = this.getSearchResults.bind(this);
   }
-  handleInput = (val) => {
-    
-
-    console.log(val)
+  fetchingAPI(searchValue){
+    const base_URL ='https://www.googleapis.com/books/v1/volumes?q=intitle:'
+    fetch(`${base_URL}${searchValue}`)
+    .then(res => res.json())
+    .then(resJ=> {
+      const newItems = resJ.items.map(function(el,index){
+        const sale = el.saleInfo.saleability === 'FOR_SALE' ? el.saleInfo.retailPrice.amount: null;
+        return { key: index,
+                 title: el.volumeInfo.title , 
+                 authors: el.volumeInfo.authors, 
+                 description: el.volumeInfo.description, 
+                 thumbnail: el.volumeInfo.imageLinks.thumbnail, 
+                 sale: el.saleInfo.saleability,
+                 price: sale
+      }}); 
+      this.setState({
+        lists: newItems
+      })
+    })
+      
   }
-
   getSearchResults(val){
-     //const results = this.props.getSearchResults(val);
-     console.log(val);
-  }
-
-  componentDidUpdate(){
-    console.log(this.state.input);
+     this.fetchingAPI(val);
   }
 
   render() {
-    console.log(this.state.input);
     return (
       <div>
         <header>
@@ -42,7 +50,18 @@ class App extends Component {
         </div>
           
         <main>
-          <Booklist />
+          {this.state.lists.map((el,index) =>
+            (<Booklist 
+              key={index}
+              title= {el.title}
+              authors= {el.authors}
+              description= {el.description} 
+              thumbnail= {el.thumbnail} 
+              sale= {el.sale}
+              price= {el.price}
+              />)
+          )}
+
         </main>
       </div>
     );
