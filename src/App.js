@@ -9,13 +9,15 @@ class App extends Component {
   constructor(Props){
     super();
     this.state = {
+      searchValue: null,
       lists: [],
     }
     this.getSearchResults = this.getSearchResults.bind(this);
   }
-  fetchingAPI(searchValue){
+  fetchingAPI(searchValue, filterOption){
     const base_URL ='https://www.googleapis.com/books/v1/volumes?q=intitle:'
-    fetch(`${base_URL}${searchValue}`)
+    const filterResults = !filterOption ? '': `&filter:${filterOption}`;
+    fetch(`${base_URL}${searchValue}${filterResults}`)
     .then(res => res.json())
     .then(resJ=> {
       const newItems = resJ.items.map(function(el,index){
@@ -40,11 +42,18 @@ class App extends Component {
       
   }
   getSearchResults(val){
+    
+    this.setState({
+      searchValue: val
+    });
+    console.log(this.state.searchValue)
      this.fetchingAPI(val);
+
   }
 
   filterBookType(val){
     console.log(val);
+    this.fetchingAPI(this.state.searchValue, val);
   }
 
   filterPrintType(val){

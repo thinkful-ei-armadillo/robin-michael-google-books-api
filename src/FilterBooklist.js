@@ -27,6 +27,7 @@ class FilterBooklist extends React.Component{
                     <option value="all">All</option>
                     <option value="ebook">ebooks</option>
                     <option value="free-ebook">free-ebooks</option>
+                    <option value="paid-ebooks">paid-ebooks</option>
                     <option value="full">full</option>
                     <option value="partial">partial</option>
                 </select>
