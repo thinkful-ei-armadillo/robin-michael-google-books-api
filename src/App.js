@@ -14,12 +14,13 @@ class App extends Component {
     }
     this.getSearchResults = this.getSearchResults.bind(this);
   }
-  fetchingAPI(searchValue, filterOption){
+  fetchingAPI(searchValue, bookType,printType){
     const base_URL ='https://www.googleapis.com/books/v1/volumes?q=intitle:'
-    const filterResults = !filterOption ? '': `&filter:${filterOption}`;
-    console.log(`${base_URL}${searchValue}${filterResults}`);
+    const filterResults = !bookType ? '': `&filter=${bookType}`;
+    const print = !printType ? '': `&printType=${printType}`;
+    console.log(`${base_URL}${searchValue}${filterResults}${print}`);
     fetch(`${base_URL}${searchValue}${filterResults}`)
-    .then(res => res.json())
+    .then(res => res.ok ? res.json() : Promise.reject('error'))
     .then(resJ=> {
       const newItems = resJ.items.map(function(el,index){
         const sale = el.saleInfo.saleability === 'FOR_SALE' ? el.saleInfo.retailPrice.amount: null;
@@ -30,16 +31,13 @@ class App extends Component {
                  thumbnail: el.volumeInfo.imageLinks.thumbnail, 
                  sale: el.saleInfo.saleability,
                  price: sale,
-                 printType: el.volumeInfo.printType,
-                 viewability: el.accessInfo.viewability,
-                 ebook: el.accessInfo.epub.isAvailable
       }}); 
       
       this.setState({
         lists: newItems
       })
      
-    })
+    }).catch(err => alert(err.message))
       
   }
   getSearchResults(val){
@@ -47,18 +45,17 @@ class App extends Component {
     this.setState({
       searchValue: val
     });
-    console.log(this.state.searchValue)
      this.fetchingAPI(val);
 
   }
 
   filterBookType(val){
-    console.log(this.state.searchValue);
-    this.fetchingAPI(this.state.searchValue, val);
+    this.fetchingAPI(this.state.searchValue, val, '');
   }
 
   filterPrintType(val){
     console.log(val);
+    this.fetchingAPI(this.state.searchValue, "", val);
   }
 
   render() {

@@ -24,9 +24,9 @@ class FilterBooklist extends React.Component{
                 </select>
                 <label htmlFor="book-type">Book-type: </label>
                 <select onChange={(ev) => this.handleBookType(ev)}name="book-type">
-                    <option value="all">All</option>
-                    <option value="ebook">ebooks</option>
-                    <option value="free-ebook">free-ebooks</option>
+                    <option value="">All</option>
+                    <option value="ebooks">ebooks</option>
+                    <option value="free-ebooks">free-ebooks</option>
                     <option value="paid-ebooks">paid-ebooks</option>
                     <option value="full">full</option>
                     <option value="partial">partial</option>
