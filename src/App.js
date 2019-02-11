@@ -11,18 +11,27 @@ class App extends Component {
     this.state = {
       lists: []
     }
+    this.getSearchResults = this.getSearchResults.bind(this);
   }
   handleInput = (val) => {
+    
     console.log(val)
   }
+
+  getSearchResults(val){
+     //const results = this.props.getSearchResults(val);
+     console.log(val);
+  }
+
+
   render() {
     return (
       <div>
         <header>
-          <h1>Google Book Seacrh</h1>
+          <h1>Google Book Search</h1>
         </header>
         <div>
-          <SeacrhAndFilter handleInput={() => this.handleInput} />
+          <SeacrhAndFilter getSearchResults={this.getSearchResults()} />
           <FilterBooklist />
         </div>
           
