@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import SeacrhAndFilter from './SearchAndFilter';
 import Booklist from './Booklist';
+import FilterBooklist from './FilterBooklist';
 
 class App extends Component {
+  
+  constructor(Props){
+    super();
+    this.state = {
+      lists: []
+    }
+  }
+
   render() {
     return (
       <div>
@@ -12,7 +21,9 @@ class App extends Component {
         </header>
         <div>
           <SeacrhAndFilter />
+          <FilterBooklist />
         </div>
+          
         <main>
           <Booklist />
         </main>
